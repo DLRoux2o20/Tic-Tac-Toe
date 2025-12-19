@@ -1,1 +1,3 @@
-# Tic-Tac-Toe
+Lessons learnt when making website:
+
+1. 
