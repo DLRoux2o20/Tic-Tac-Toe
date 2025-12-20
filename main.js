@@ -1,8 +1,11 @@
 let game = (function () {
+	// Probeer variables hide binne object
 	let player1 = createPlayer("X", "Duan");
 	let player2 = createPlayer("O", "AI");
 
+	// Probeer variables hide binne object
 	let playersTurn = player1;
+	let playerGoingFirst = player1;
 	let turnsplayed = 0;
 
 	let Gameboard = {
@@ -29,23 +32,27 @@ let game = (function () {
 			);
 
 			if (turnsplayed >= 3) {
-				Gameboard.checkForWin(row, column);
+				if (Gameboard.checkForWin(row, column) === "win") {
+					playersTurn = playerGoingFirst;
+					return;
+				}
 			}
 
-			playersTurn === player1
-				? (playersTurn = player2)
-				: (playersTurn = player1);
+			playersTurn = playersTurn === player1 ? player2 : player1;
 		},
 		checkForWin: function (row, column) {
 			if (
 				Gameboard.board[row - 1][0] === Gameboard.board[row - 1][1] &&
 				Gameboard.board[row - 1][0] === Gameboard.board[row - 1][2]
 			) {
-				console.log(`${playersTurn.name} Won!`);
 				playersTurn.score += 1;
-				console.log(`${playersTurn}'s score is ${playersTurn.score}`);
+				playerGoingFirst = playerGoingFirst === player1 ? player2 : player1;
+				console.log(`${playersTurn.name} Won!`);
+				console.log(`${playersTurn.name}'s score is ${playersTurn.score}`);
 				Gameboard.resetGame();
+				return "win";
 			}
+			// ADD NOG CHECKERS
 		},
 		resetGame: function () {
 			for (let i = 0; i < 3; i++) {
@@ -53,6 +60,8 @@ let game = (function () {
 					Gameboard.board[i][j] = ".";
 				}
 			}
+			player1.marker = player1.marker === "X" ? "O" : "X";
+			player2.marker = player2.marker === "O" ? "X" : "O";
 			console.log(
 				`Board Reset:\n${Gameboard.board[0].join(
 					" "
@@ -61,6 +70,7 @@ let game = (function () {
 		},
 	};
 
+	// Probeer hide binne object, gebruik miskien function, soos logBoardStatus
 	console.log(
 		`${Gameboard.board[0].join(" ")}\n${Gameboard.board[1].join(
 			" "
@@ -70,8 +80,6 @@ let game = (function () {
 	return {
 		playRound: Gameboard.playRound,
 		checkForWin: Gameboard.checkForWin,
-		turnsplayed,
-		playersTurn,
 	};
 })();
 
@@ -79,7 +87,8 @@ game.playRound(1, 1);
 game.playRound(2, 1);
 game.playRound(1, 2);
 game.playRound(2, 2);
-game.playRound(1, 3);
+game.playRound(3, 1);
+game.playRound(2, 3);
 
 function createPlayer(marker, name) {
 	const score = 0;
