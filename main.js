@@ -1,9 +1,8 @@
 let game = (function () {
-	// Probeer variables hide binne object
+	// Kan variables binne Player object sit
 	let player1 = createPlayer("X", "Duan");
 	let player2 = createPlayer("O", "AI");
 
-	// Probeer variables hide binne object
 	let playersTurn = player1;
 	let playerGoingFirst = player1;
 	let turnsplayed = 0;
@@ -69,7 +68,6 @@ let game = (function () {
 					this.playerWon();
 					return "win";
 				}
-				return;
 			} else if (row === 1) {
 				if (
 					column !== 2 &&
@@ -81,7 +79,6 @@ let game = (function () {
 					this.playerWon();
 					return "win";
 				}
-				return;
 			} else if (row === 3) {
 				if (
 					column !== 2 &&
@@ -93,6 +90,11 @@ let game = (function () {
 					this.playerWon();
 					return "win";
 				}
+			}
+
+			if (turnsplayed === 9) {
+				console.log("It's a draw!");
+				this.resetGame();
 			}
 		},
 		playerWon: function () {
