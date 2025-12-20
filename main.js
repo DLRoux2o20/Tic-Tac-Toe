@@ -1,12 +1,15 @@
+// VERWYDER LATER
 let game = (function () {
-	// Kan variables binne Player object sit
-	let player1 = createPlayer("X", "Duan");
-	let player2 = createPlayer("O", "AI");
+	let Players = {
+		player1: createPlayer("X", "Duan"),
+		player2: createPlayer("O", "AI"),
+		turnsPlayed: 0,
+	};
 
-	let playersTurn = player1;
-	let playerGoingFirst = player1;
-	let turnsplayed = 0;
+	Players.playersTurn = Players.player1;
+	Players.playerGoingFirst = Players.player1;
 
+	// WRAP GAMEBOARD OBJECT IN IIFE (MODULE)
 	let Gameboard = {
 		board: [
 			[".", ".", "."],
@@ -16,8 +19,9 @@ let game = (function () {
 		init: function () {
 			this.showBoard();
 		},
+		// GAME OBJECT
 		playRound: function (row, column) {
-			if (turnsplayed === 9) {
+			if (Players.turnsPlayed === 9) {
 				return;
 			}
 			if (Gameboard.board[row - 1][column - 1] !== ".") {
@@ -25,18 +29,21 @@ let game = (function () {
 				return;
 			}
 
-			Gameboard.board[row - 1][column - 1] = playersTurn.marker;
-			turnsplayed++;
+			Gameboard.board[row - 1][column - 1] = Players.playersTurn.marker;
+			Players.turnsPlayed++;
 			Gameboard.showBoard();
 
-			if (turnsplayed >= 3) {
+			if (Players.turnsPlayed >= 3) {
 				if (Gameboard.checkForWin(row, column) === "win") {
-					playersTurn = playerGoingFirst;
+					Players.playersTurn = Players.playerGoingFirst;
 					return;
 				}
 			}
 
-			playersTurn = playersTurn === player1 ? player2 : player1;
+			Players.playersTurn =
+				Players.playersTurn === Players.player1
+					? Players.player2
+					: Players.player1;
 		},
 		showBoard: function () {
 			console.log(
@@ -45,6 +52,7 @@ let game = (function () {
 				)}\n${this.board[2].join(" ")}\n`
 			);
 		},
+		// GAME OBJECT
 		checkForWin: function (row, column) {
 			if (
 				this.board[row - 1][0] === this.board[row - 1][1] &&
@@ -92,26 +100,33 @@ let game = (function () {
 				}
 			}
 
-			if (turnsplayed === 9) {
+			if (Players.turnsPlayed === 9) {
 				console.log("It's a draw!");
 				this.resetGame();
 			}
 		},
+		// GAME OBJECT
 		playerWon: function () {
-			playersTurn.score += 1;
-			playerGoingFirst = playerGoingFirst === player1 ? player2 : player1;
-			console.log(`${playersTurn.name} Won!`);
-			console.log(`${playersTurn.name}'s score is ${playersTurn.score}`);
+			Players.playersTurn.score += 1;
+			Players.playerGoingFirst =
+				Players.playerGoingFirst === Players.player1
+					? Players.player2
+					: Players.player1;
+			console.log(`${Players.playersTurn.name} Won!`);
+			console.log(
+				`${Players.playersTurn.name}'s score is ${Players.playersTurn.score}`
+			);
 			this.resetGame();
 		},
+		// GAME OBJECT
 		resetGame: function () {
 			for (let i = 0; i < 3; i++) {
 				for (let j = 0; j < 3; j++) {
 					this.board[i][j] = ".";
 				}
 			}
-			player1.marker = player1.marker === "X" ? "O" : "X";
-			player2.marker = player2.marker === "O" ? "X" : "O";
+			Players.player1.marker = Players.player1.marker === "X" ? "O" : "X";
+			Players.player2.marker = Players.player2.marker === "O" ? "X" : "O";
 			console.log(`Board Reset:\n`);
 			this.showBoard();
 		},
@@ -123,6 +138,7 @@ let game = (function () {
 	};
 })();
 
+// SKYF MISKIEN
 function createPlayer(marker, name) {
 	const score = 0;
 	return { name, score, marker };
