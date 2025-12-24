@@ -1,3 +1,9 @@
+:root {
+	--black: #494953;
+	--red: #ff5656;
+	--blue: #6a7efc;
+}
+
 *,
 *::before,
 *::after {
@@ -55,4 +61,70 @@ h6 {
 #root,
 #__next {
 	isolation: isolate;
+}
+
+body {
+	height: 100vh;
+	width: 100vw;
+	align-content: center;
+}
+
+.grid {
+	display: grid;
+}
+
+.flex {
+	display: flex;
+}
+
+.wrapper {
+	width: 30vw;
+	aspect-ratio: 1/1;
+	background-color: var(--black);
+	margin-inline: auto;
+	grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+	gap: 0.8vw;
+}
+
+.tile {
+	background-color: white;
+	justify-content: center;
+	align-items: center;
+}
+
+.fa-x, .fa-o {
+	font-size: 5vw;
+}
+
+.fa-x {
+	color: var(--red);
+}
+
+.fa-o {
+	color: var(--blue);
+}
+
+@media only screen and (max-width: 1024px) {
+	.wrapper {
+		width: 40vw;
+	}
+}
+
+@media only screen and (max-width: 425px) {
+	.wrapper {
+		width: 70vw;
+		gap: 1.3vw;
+	}
+	.fa-x, .fa-o {
+		font-size: 9vw;
+	}
+}
+
+@media only screen and (max-height: 425px) {
+	.wrapper {
+		width: 25vw;
+	}
+	.fa-x, .fa-o {
+		font-size: 4vw;
+	}
 }
