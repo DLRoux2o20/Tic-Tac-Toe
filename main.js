@@ -19,9 +19,9 @@ function createPlayer(name, marker) {
 
 let Gameboard = (function () {
 	const board = [
-		[".", ".", "."],
-		[".", ".", "."],
-		[".", ".", "."],
+		["", "", ""],
+		["", "", ""],
+		["", "", ""],
 	];
 
 	function getBoard() {
@@ -29,7 +29,7 @@ let Gameboard = (function () {
 	}
 
 	function setCell(row, col, marker) {
-		if (board[row][col] === ".") {
+		if (board[row][col] === "") {
 			board[row][col] = marker;
 			return true;
 		}
@@ -141,5 +141,41 @@ let Game = (function () {
 
 	return {
 		playRound,
+		playersTurn, // Hide later as moontlik
 	};
 })(Gameboard);
+
+let DOMHandling = (function () {
+	const tiles = document.getElementsByClassName("tile");
+	Array.from(tiles).forEach((e) => e.addEventListener("click", addTileMarker));
+
+	function addTileMarker(event) {
+		let tile = event.target;
+		Gameboard.setCell(
+			tile.dataset.rowIndex,
+			tile.dataset.index,
+			Game.playersTurn.marker
+		);
+		render();
+	}
+
+	function render() {
+		let board = Gameboard.getBoard();
+		board.reduce(function(total, currentItem) {
+			let row = document.querySelectorAll(`[data-row-index='${total}']`);
+			Array.from(row).reduce(function(subTotal, subCurrentItem) {
+				if (board[total][subTotal] !== "") {
+					let icon = document.createElement("i");
+					icon.classList.add("fa-solid", `fa-${board[total][subTotal].toLowerCase()}`);
+					subCurrentItem.appendChild(icon);
+				}
+				return subTotal + 1;
+			}, 0);
+			return total + 1;
+		}, 0);
+	}
+
+	return { // TEMP
+		render,
+	}
+})(Gameboard, Game);
