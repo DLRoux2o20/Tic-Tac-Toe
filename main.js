@@ -42,9 +42,10 @@ let Gameboard = (function () {
 	}
 
 	function resetBoard() {
-		board.forEach((row, i) => row.forEach((e, j) => (board[i][j] = ".")));
+		board.forEach((row, i) => row.forEach((e, j) => (board[i][j] = "")));
 		console.log(`Board Reset:\n`);
 		showBoard();
+		DOMHandling.render("DONE!");
 	}
 
 	showBoard();
@@ -64,11 +65,11 @@ let Game = (function () {
 	let playerGoingFirst = player1;
 	let turnsPlayed = 0;
 
-	function playRound(row, col) {
-		row -= 1;
-		col -= 1;
-
+	function playRound(row, col, clickedTile) {
 		if (turnsPlayed === 9) {
+			return;
+		}
+		if (clickedTile.hasChildNodes()) {
 			return;
 		}
 
@@ -77,6 +78,7 @@ let Game = (function () {
 		Gameboard.showBoard();
 
 		const boardSnapshot = Gameboard.getBoard();
+		DOMHandling.render();
 
 		if (turnsPlayed >= 5) {
 			if (isWinner(boardSnapshot, row, col, playersTurn.marker)) {
@@ -141,7 +143,6 @@ let Game = (function () {
 
 	return {
 		playRound,
-		playersTurn, // Hide later as moontlik
 	};
 })(Gameboard);
 
@@ -150,24 +151,28 @@ let DOMHandling = (function () {
 	Array.from(tiles).forEach((e) => e.addEventListener("click", addTileMarker));
 
 	function addTileMarker(event) {
-		let tile = event.target;
-		Gameboard.setCell(
+		let tile = event.currentTarget;
+		Game.playRound(
 			tile.dataset.rowIndex,
 			tile.dataset.index,
-			Game.playersTurn.marker
+			tile
 		);
-		render();
 	}
 
-	function render() {
+	function render(message) {
+		console.log(message);
 		let board = Gameboard.getBoard();
+
 		board.reduce(function(total, currentItem) {
 			let row = document.querySelectorAll(`[data-row-index='${total}']`);
+
 			Array.from(row).reduce(function(subTotal, subCurrentItem) {
-				if (board[total][subTotal] !== "") {
+				if (board[total][subTotal] !== "" && !subCurrentItem.hasChildNodes()) {
 					let icon = document.createElement("i");
 					icon.classList.add("fa-solid", `fa-${board[total][subTotal].toLowerCase()}`);
 					subCurrentItem.appendChild(icon);
+				} else if (board[total][subTotal] === "" && subCurrentItem.hasChildNodes()) {
+					subCurrentItem.firstElementChild.remove();
 				}
 				return subTotal + 1;
 			}, 0);

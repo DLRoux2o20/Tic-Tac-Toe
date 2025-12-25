@@ -90,6 +90,7 @@ body {
 	background-color: white;
 	justify-content: center;
 	align-items: center;
+	cursor: pointer;
 }
 
 .fa-x, .fa-o {
