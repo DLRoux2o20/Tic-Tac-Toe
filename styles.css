@@ -93,7 +93,8 @@ body {
 	cursor: pointer;
 }
 
-.fa-x, .fa-o {
+.fa-x,
+.fa-o {
 	font-size: 5vw;
 }
 
@@ -103,6 +104,53 @@ body {
 
 .fa-o {
 	color: var(--blue);
+}
+
+.header-child {
+	align-items: center;
+	justify-items: center;
+	font-family: "Google Sans Code", monospace;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
+	padding-inline: 2.5em;
+	padding-top: 0.5em;
+}
+
+.header-child-text {
+	text-decoration: underline;
+}
+
+.header-child-icon,
+.header-child-text {
+	font-size: 3rem;
+}
+
+.header-child-score {
+	font-size: 2.5rem;
+}
+
+#header {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	justify-content: space-between;
+}
+
+#player1-div {
+	grid-template: 1fr 1fr / 1fr 80px;
+}
+
+#player2-div {
+	grid-template: 1fr 1fr / 80px 1fr;
+}
+
+#player1-score {
+	grid-column: 1 / 1;
+}
+
+#player2-score {
+	grid-column: 2 / 2;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -116,7 +164,8 @@ body {
 		width: 70vw;
 		gap: 1.3vw;
 	}
-	.fa-x, .fa-o {
+	.fa-x,
+	.fa-o {
 		font-size: 9vw;
 	}
 }
@@ -125,7 +174,8 @@ body {
 	.wrapper {
 		width: 25vw;
 	}
-	.fa-x, .fa-o {
+	.fa-x,
+	.fa-o {
 		font-size: 4vw;
 	}
 }

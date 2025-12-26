@@ -45,7 +45,7 @@ let Gameboard = (function () {
 		board.forEach((row, i) => row.forEach((e, j) => (board[i][j] = "")));
 		console.log(`Board Reset:\n`);
 		showBoard();
-		DOMHandling.render("DONE!");
+		Display.render();
 	}
 
 	showBoard();
@@ -78,7 +78,7 @@ let Game = (function () {
 		Gameboard.showBoard();
 
 		const boardSnapshot = Gameboard.getBoard();
-		DOMHandling.render();
+		Display.render();
 
 		if (turnsPlayed >= 5) {
 			if (isWinner(boardSnapshot, row, col, playersTurn.marker)) {
@@ -146,7 +146,7 @@ let Game = (function () {
 	};
 })(Gameboard);
 
-let DOMHandling = (function () {
+let Display = (function () {
 	const tiles = document.getElementsByClassName("tile");
 	Array.from(tiles).forEach((e) => e.addEventListener("click", addTileMarker));
 
@@ -159,8 +159,7 @@ let DOMHandling = (function () {
 		);
 	}
 
-	function render(message) {
-		console.log(message);
+	function render() {
 		let board = Gameboard.getBoard();
 
 		board.reduce(function(total, currentItem) {

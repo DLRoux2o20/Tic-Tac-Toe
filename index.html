@@ -4,10 +4,33 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="styles.css" />
-		<script src="https://kit.fontawesome.com/3a1a862694.js" crossorigin="anonymous"></script>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap"
+			rel="stylesheet"
+		/>
+
+		<script
+			src="https://kit.fontawesome.com/3a1a862694.js"
+			crossorigin="anonymous"
+		></script>
 		<title>Tic Tac Toe</title>
 	</head>
 	<body>
+		<div class="flex" id="header">
+			<div class="grid header-child" id="player1-div">
+				<span class="header-child-text">Duan</span
+				><i class="fa-solid fa-x header-child-icon"></i>
+				<span class="header-child-score" id="player1-score">1</span>
+			</div>
+			<div class="grid header-child" id="player2-div">
+				<i class="fa-solid fa-o header-child-icon"></i
+				><span class="header-child-text">Meneer</span>
+				<span class="header-child-score" id="player2-score">0</span>
+			</div>
+		</div>
 		<div class="grid wrapper" id="wrapper">
 			<div class="flex tile" data-index="0" data-row-index="0"></div>
 			<div class="flex tile" data-index="1" data-row-index="0"></div>
