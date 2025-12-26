@@ -37,23 +37,14 @@ let Gameboard = (function () {
 		return false;
 	}
 
-	function showBoard() {
-		console.log(board.map((row) => row.join(" ")).join("\n"));
-	}
-
 	function resetBoard() {
 		board.forEach((row, i) => row.forEach((e, j) => (board[i][j] = "")));
-		console.log(`Board Reset:\n`);
-		showBoard();
-		Display.render();
+		Display.renderBoard();
 	}
-
-	showBoard();
 
 	return {
 		getBoard,
 		setCell,
-		showBoard,
 		resetBoard,
 	};
 })();
@@ -75,10 +66,9 @@ let Game = (function () {
 
 		Gameboard.setCell(row, col, playersTurn.marker);
 		turnsPlayed++;
-		Gameboard.showBoard();
 
 		const boardSnapshot = Gameboard.getBoard();
-		Display.render();
+		Display.renderBoard();
 
 		if (turnsPlayed >= 5) {
 			if (isWinner(boardSnapshot, row, col, playersTurn.marker)) {
@@ -128,8 +118,7 @@ let Game = (function () {
 
 	function playerWon() {
 		playersTurn.addPoint();
-		console.log(`${playersTurn.name} Won!`);
-		console.log(`${playersTurn.name}'s score is ${playersTurn.getScore()}`);
+		Display.renderScores(player1.getScore(), player2.getScore());
 		resetGame();
 	}
 
@@ -138,6 +127,7 @@ let Game = (function () {
 		player1.marker = player1.marker === "X" ? "O" : "X";
 		player2.marker = player2.marker === "O" ? "X" : "O";
 		turnsPlayed = 0;
+		Display.displayMarkers(player1.marker, player2.marker);
 		Gameboard.resetBoard();
 	}
 
@@ -150,6 +140,12 @@ let Display = (function () {
 	const tiles = document.getElementsByClassName("tile");
 	Array.from(tiles).forEach((e) => e.addEventListener("click", addTileMarker));
 
+	let DOMplayer1Icon = document.getElementById("player1-marker");
+	let DOMplayer2Icon = document.getElementById("player2-marker");
+
+	let DOMplayer1Score = document.getElementById("player1-score");
+	let DOMplayer2Score = document.getElementById("player2-score");
+
 	function addTileMarker(event) {
 		let tile = event.currentTarget;
 		Game.playRound(
@@ -159,7 +155,20 @@ let Display = (function () {
 		);
 	}
 
-	function render() {
+	function displayMarkers(player1Marker, player2Marker) {
+		DOMplayer1Icon.classList.remove(`fa-${player2Marker.toLowerCase()}`);
+		DOMplayer1Icon.classList.add(`fa-${player1Marker.toLowerCase()}`);
+
+		DOMplayer2Icon.classList.remove(`fa-${player1Marker.toLowerCase()}`);
+		DOMplayer2Icon.classList.add(`fa-${player2Marker.toLowerCase()}`);
+	}
+
+	function renderScores(player1Score, player2Score) {
+		DOMplayer1Score.textContent = player1Score;
+		DOMplayer2Score.textContent = player2Score;
+	}
+
+	function renderBoard() {
 		let board = Gameboard.getBoard();
 
 		board.reduce(function(total, currentItem) {
@@ -179,7 +188,9 @@ let Display = (function () {
 		}, 0);
 	}
 
-	return { // TEMP
-		render,
+	return {
+		renderBoard,
+		renderScores,
+		displayMarkers,
 	}
 })(Gameboard, Game);
