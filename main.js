@@ -51,7 +51,8 @@ let Gameboard = (function () {
 
 let Game = (function () {
 	let player1 = createPlayer("Duan", "X");
-	let player2 = createPlayer("AI", "O");
+	let player2 = createPlayer("Duan", "O");
+
 	let playersTurn = player1;
 	let playerGoingFirst = player1;
 	let turnsPlayed = 0;
@@ -110,7 +111,6 @@ let Game = (function () {
 		}
 
 		if (turnsPlayed === 9) {
-			console.log("It's a draw!");
 			resetGame();
 		}
 		return false;
@@ -155,6 +155,10 @@ let Display = (function () {
 		);
 	}
 
+	function displayNames(player1Name, player2Name) {
+
+	}
+
 	function displayMarkers(player1Marker, player2Marker) {
 		DOMplayer1Icon.classList.remove(`fa-${player2Marker.toLowerCase()}`);
 		DOMplayer1Icon.classList.add(`fa-${player1Marker.toLowerCase()}`);
@@ -192,5 +196,6 @@ let Display = (function () {
 		renderBoard,
 		renderScores,
 		displayMarkers,
+		displayNames,
 	}
 })(Gameboard, Game);
