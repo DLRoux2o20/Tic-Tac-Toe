@@ -96,7 +96,7 @@ input {
 }
 
 form {
-	/* display: none; */
+	display: none;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -192,6 +192,20 @@ label {
 	font-weight: 500;
 	padding-inline: 2.5em;
 	padding-top: 0.5em;
+}
+
+.header-child-text,
+.header-child-text-div {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+	max-width: 100%;
+}
+
+.header-child-text-div {
+	width: 100%;
 }
 
 .header-child-text {
@@ -396,6 +410,19 @@ label {
 	.fa-o {
 		font-size: 9vw;
 	}
+	.header-child {
+		padding-inline: 0.75em;
+		max-width: 50%;
+	}
+	.header-child-text {
+		font-size: 1.5rem;
+	}
+	.header-child-icon {
+		font-size: 1.75rem;
+	}
+	.header-child-score {
+		font-size: 1.25rem;
+	}
 	#main-form-div {
 		width: 50%;
 	}
@@ -403,11 +430,20 @@ label {
 		margin-top: 4.5em;
 		height: 150px;
 	}
+	#player1-div {
+		grid-template-columns: 1fr 60px;
+	}
+	#player2-div {
+		grid-template-columns: 60px 1fr;
+	}
 }
 
 @media only screen and (max-height: 430px) {
 	.wrapper {
 		width: 25vw;
+		margin-top: 8vw;
+		position: relative;
+		z-index: 2;
 	}
 	.fa-x,
 	.fa-o {
