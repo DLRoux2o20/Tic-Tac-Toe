@@ -3,15 +3,22 @@
 	--red: #ff5656;
 	--blue: #6a7efc;
 	--yellow: #fce86a;
-	--aqua: #56ffff;
 	--orange: #fc9f6a;
 	--green: #56ff56;
-	--green2: #6afc9f;
-	--green3: #7efc6a;
+	--green2: #7efc6a;
 	--light-blue: #56aaff;
 	--light-blue2: #6ac7fc;
 	--pink: #fc6ac7;
 	--purple: #9f6afc;
+
+	--biggest-shape: 6.5rem;
+	--xl-shape: 6rem;
+	--l-shape: 5.5rem;
+	--m-shape: 5rem;
+	--s-shape: 4.5rem;
+	--xs-shape: 4rem;
+	--xxs-shape: 3rem;
+	--smallest-shape: 2.5rem;
 }
 
 *,
@@ -123,6 +130,7 @@ label {
 	font-size: 1.5rem;
 	font-weight: 700;
 	color: white;
+	text-align: center;
 }
 
 .grid {
@@ -227,7 +235,7 @@ label {
 
 #form-x1 {
 	color: var(--purple);
-	font-size: 6rem;
+	font-size: var(--xl-shape);
 	top: 8vh;
 	left: 10vw;
 	transform: rotate(-25deg);
@@ -235,14 +243,14 @@ label {
 
 #form-o1 {
 	color: var(--light-blue);
-	font-size: 2.5rem;
+	font-size: var(--smallest-shape);
 	top: 25vh;
 	left: 15vw;
 }
 
 #form-x2 {
 	color: var(--green);
-	font-size: 4rem;
+	font-size: var(--xs-shape);
 	top: 32vh;
 	left: 8vw;
 	transform: rotate(10deg);
@@ -250,21 +258,21 @@ label {
 
 #form-o2 {
 	color: var(--yellow);
-	font-size: 5.5rem;
+	font-size: var(--l-shape);
 	top: 38vh;
 	left: 16vw;
 }
 
 #form-o3 {
 	color: var(--pink);
-	font-size: 4.5rem;
+	font-size: var(--s-shape);
 	top: 50vh;
 	left: 9vw;
 }
 
 #form-x3 {
 	color: var(--orange);
-	font-size: 5rem;
+	font-size: var(--m-shape);
 	top: 65vh;
 	left: 14vw;
 	transform: rotate(-10deg);
@@ -272,14 +280,14 @@ label {
 
 #form-o4 {
 	color: var(--orange);
-	font-size: 6.5rem;
+	font-size: var(--biggest-shape);
 	top: 8vh;
 	right: 10vw;
 }
 
 #form-x4 {
 	color: var(--light-blue2);
-	font-size: 5rem;
+	font-size: var(--m-shape);
 	top: 25vh;
 	right: 7vw;
 	transform: rotate(30deg);
@@ -287,22 +295,22 @@ label {
 
 #form-o5 {
 	color: var(--pink);
-	font-size: 4rem;
+	font-size: var(--xs-shape);
 	top: 34vh;
 	right: 13vw;
 }
 
 #form-x5 {
 	color: var(--yellow);
-	font-size: 3rem;
+	font-size: var(--xxs-shape);
 	top: 44vh;
 	right: 18vw;
 	transform: rotate(-20deg);
 }
 
 #form-x6 {
-	color: var(--green3);
-	font-size: 4.5rem;
+	color: var(--green2);
+	font-size: var(--s-shape);
 	top: 52vh;
 	right: 9vw;
 	transform: rotate(10deg);
@@ -310,7 +318,7 @@ label {
 
 #form-o6 {
 	color: var(--purple);
-	font-size: 5rem;
+	font-size: var(--m-shape);
 	top: 65vh;
 	right: 14vw;
 }
@@ -338,13 +346,48 @@ label {
 	grid-column: 2 / 2;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1030px) {
+	:root {
+		--biggest-shape: 5rem;
+		--xl-shape: 4.5rem;
+		--l-shape: 4rem;
+		--m-shape: 3.5rem;
+		--s-shape: 3rem;
+		--xs-shape: 2.5rem;
+		--xxs-shape: 1.6rem;
+		--smallest-shape: 1.5rem;
+	}
+	h2 {
+		font-size: 2.5rem;
+	}
+	label {
+		font-size: 1.2rem;
+	}
 	.wrapper {
 		width: 40vw;
 	}
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 430px) {
+	:root {
+		--biggest-shape: 4rem;
+		--xl-shape: 3.5rem;
+		--l-shape: 3rem;
+		--m-shape: 2.5rem;
+		--s-shape: 2rem;
+		--xs-shape: 1.5rem;
+		--xxs-shape: 1rem;
+		--smallest-shape: 0.8rem;
+	}
+	h2 {
+		font-size: 1.6rem;
+	}
+	label {
+		font-size: 0.8rem;
+	}
+	input {
+		width: 75%;
+	}
 	.wrapper {
 		width: 70vw;
 		gap: 1.3vw;
@@ -353,9 +396,16 @@ label {
 	.fa-o {
 		font-size: 9vw;
 	}
+	#main-form-div {
+		width: 50%;
+	}
+	#form-input-container {
+		margin-top: 4.5em;
+		height: 150px;
+	}
 }
 
-@media only screen and (max-height: 425px) {
+@media only screen and (max-height: 430px) {
 	.wrapper {
 		width: 25vw;
 	}
