@@ -88,15 +88,16 @@ body {
 
 .header-child,
 h2,
+h3,
 label,
-input {
+input,
+button {
 	font-family: "Google Sans Code", monospace;
 	font-optical-sizing: auto;
 	font-style: normal;
 }
 
 form {
-	display: none;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -111,6 +112,12 @@ form i {
 
 h2 {
 	font-size: 3rem;
+	text-align: center;
+}
+
+h3 {
+	font-size: 5rem;
+	color: white;
 	text-align: center;
 }
 
@@ -133,12 +140,28 @@ label {
 	text-align: center;
 }
 
+button {
+	width: 180px;
+	height: 50px;
+	color: white;
+	background-color: #27272c;
+	border: none;
+	border-radius: 5px;
+	font-weight: 600;
+	font-size: 1.2rem;
+	cursor: pointer;
+}
+
 .grid {
 	display: grid;
 }
 
 .flex {
 	display: flex;
+}
+
+.hidden {
+	display: none;
 }
 
 .background-red {
@@ -227,7 +250,6 @@ label {
 	height: 100%;
 	margin-inline: auto;
 	padding-top: 1.5em;
-	/* background-color: aqua; */
 }
 
 #form-input-container {
@@ -360,6 +382,38 @@ label {
 	grid-column: 2 / 2;
 }
 
+#end-screen {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(73, 73, 83, 0.9);
+	justify-content: center;
+	align-items: center;
+}
+
+#end-screen-content-wrapper {
+	height: 60%;
+	flex-direction: column;
+	justify-content: start;
+	gap: 8em;
+}
+
+#end-screen-buttons-div {
+	width: 100%;
+	gap: 5em;
+	justify-content: center;
+}
+
+#next-round-button:hover {
+	background-color: var(--light-blue);
+}
+
+#restart-game-button:hover {
+	background-color: var(--orange);
+}
+
 @media only screen and (max-width: 1030px) {
 	:root {
 		--biggest-shape: 5rem;
@@ -379,6 +433,22 @@ label {
 	}
 	.wrapper {
 		width: 40vw;
+	}
+}
+
+@media only screen and (max-width: 830px) {
+	.header-child-text,
+	.header-child-score {
+		font-size: 2rem;
+	}
+	.header-child-icon {
+		font-size: 2.5rem;
+	}
+	#next-round-button {
+		background-color: var(--light-blue);
+	}
+	#restart-game-button {
+		background-color: var(--orange);
 	}
 }
 
