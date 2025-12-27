@@ -199,3 +199,8 @@ let Display = (function () {
 		displayNames,
 	}
 })(Gameboard, Game);
+
+// let form = document.querySelector("form");
+// form.addEventListener("submit", function setPlayers() {
+
+// });

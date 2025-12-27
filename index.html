@@ -19,7 +19,7 @@
 		<title>Tic Tac Toe</title>
 	</head>
 	<body>
-		<form class="hidden">
+		<form>
 			<i class="fa-solid fa-x" id="form-x1"></i
 			><i class="fa-solid fa-x" id="form-x2"></i
 			><i class="fa-solid fa-x" id="form-x3"></i
@@ -45,47 +45,50 @@
 							maxlength="20"
 							autocomplete="off"
 						/>
+						<button id="form-button" type="submit">Submit</button>
 					</div>
 				</div>
 			</div>
 		</form>
-		<div class="flex" id="header">
-			<div class="grid header-child" id="player1-div">
-				<div class="header-child-text-div">
-					<p class="header-child-text">Olgeekaaagebt</p>
+		<section class="hidden">
+			<div class="flex" id="header">
+				<div class="grid header-child" id="player1-div">
+					<div class="header-child-text-div">
+						<p class="header-child-text">Olgeekaaagebt</p>
+					</div>
+					<div class="header-child-icon-div">
+						<i class="fa-solid fa-x header-child-icon" id="player1-marker"></i>
+					</div>
+					<span class="header-child-score" id="player1-score">0</span>
 				</div>
-				<div class="header-child-icon-div">
-					<i class="fa-solid fa-x header-child-icon" id="player1-marker"></i>
+				<div class="grid header-child" id="player2-div">
+					<div class="header-child-icon-div">
+						<i class="fa-solid fa-o header-child-icon" id="player2-marker"></i>
+					</div>
+					<div class="header-child-text-div">
+						<p class="header-child-text">Olgeekaaagebt</p>
+					</div>
+					<span class="header-child-score" id="player2-score">0</span>
 				</div>
-				<span class="header-child-score" id="player1-score">0</span>
 			</div>
-			<div class="grid header-child" id="player2-div">
-				<div class="header-child-icon-div">
-					<i class="fa-solid fa-o header-child-icon" id="player2-marker"></i>
-				</div>
-				<div class="header-child-text-div">
-					<p class="header-child-text">Olgeekaaagebt</p>
-				</div>
-				<span class="header-child-score" id="player2-score">0</span>
+			<div class="grid wrapper" id="wrapper">
+				<div class="flex tile" data-index="0" data-row-index="0"></div>
+				<div class="flex tile" data-index="1" data-row-index="0"></div>
+				<div class="flex tile" data-index="2" data-row-index="0"></div>
+				<div class="flex tile" data-index="0" data-row-index="1"></div>
+				<div class="flex tile" data-index="1" data-row-index="1"></div>
+				<div class="flex tile" data-index="2" data-row-index="1"></div>
+				<div class="flex tile" data-index="0" data-row-index="2"></div>
+				<div class="flex tile" data-index="1" data-row-index="2"></div>
+				<div class="flex tile" data-index="2" data-row-index="2"></div>
 			</div>
-		</div>
-		<div class="grid wrapper" id="wrapper">
-			<div class="flex tile" data-index="0" data-row-index="0"></div>
-			<div class="flex tile" data-index="1" data-row-index="0"></div>
-			<div class="flex tile" data-index="2" data-row-index="0"></div>
-			<div class="flex tile" data-index="0" data-row-index="1"></div>
-			<div class="flex tile" data-index="1" data-row-index="1"></div>
-			<div class="flex tile" data-index="2" data-row-index="1"></div>
-			<div class="flex tile" data-index="0" data-row-index="2"></div>
-			<div class="flex tile" data-index="1" data-row-index="2"></div>
-			<div class="flex tile" data-index="2" data-row-index="2"></div>
-		</div>
-		<div class="flex" id="end-screen">
+		</section>
+		<div class="flex hidden" id="end-screen">
 			<div class="flex" id="end-screen-content-wrapper">
 				<h3>Duan Won!</h3>
 				<div class="flex" id="end-screen-buttons-div">
-					<button id="next-round-button">Next Round</button>
-					<button id="restart-game-button">Restart Game</button>
+					<button class="end-screen-button" id="next-round-button" type="button">Next Round</button>
+					<button class="end-screen-button" id="restart-game-button" type="button">Restart Game</button>
 				</div>
 			</div>
 		</div>

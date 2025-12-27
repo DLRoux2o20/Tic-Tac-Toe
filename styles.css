@@ -140,18 +140,6 @@ label {
 	text-align: center;
 }
 
-button {
-	width: 180px;
-	height: 50px;
-	color: white;
-	background-color: #27272c;
-	border: none;
-	border-radius: 5px;
-	font-weight: 600;
-	font-size: 1.2rem;
-	cursor: pointer;
-}
-
 .grid {
 	display: grid;
 }
@@ -244,6 +232,18 @@ button {
 	font-size: 2.5rem;
 }
 
+.end-screen-button {
+	width: 180px;
+	height: 50px;
+	color: white;
+	background-color: #27272c;
+	border: none;
+	border-radius: 5px;
+	font-weight: 600;
+	font-size: 1.2rem;
+	cursor: pointer;
+}
+
 #main-form-div {
 	position: relative;
 	width: 40%;
@@ -254,7 +254,7 @@ button {
 
 #form-input-container {
 	width: 100%;
-	height: 200px;
+	height: 240px;
 	margin-top: 3em;
 	padding: 1em;
 	padding-bottom: 2em;
@@ -267,6 +267,18 @@ button {
 	flex-direction: column;
 	align-items: center;
 	gap: 1.5em;
+}
+
+#form-button {
+	width: 100px;
+	height: 40px;
+	color: white;
+	background-color: #5dcf4b;
+	border: 4px solid #686868;
+	border-radius: 8px;
+	font-weight: 600;
+	font-size: 1.2rem;
+	cursor: pointer;
 }
 
 #form-x1 {
@@ -438,13 +450,11 @@ button {
 }
 
 @media only screen and (max-width: 830px) {
+	input {
+		width: 60%;
+	}
 	h3 {
 		font-size: 3rem;
-	}
-	button {
-		width: 120px;
-		height: 40px;
-		font-size: 0.9rem;
 	}
 	.header-child-text,
 	.header-child-score {
@@ -452,6 +462,11 @@ button {
 	}
 	.header-child-icon {
 		font-size: 2.5rem;
+	}
+	.end-screen-button {
+		width: 120px;
+		height: 40px;
+		font-size: 0.9rem;
 	}
 	#end-screen-content-wrapper {
 		gap: 4em;
@@ -486,6 +501,8 @@ button {
 	}
 	input {
 		width: 75%;
+		height: 38px;
+		font-size: 0.9rem;
 	}
 	.wrapper {
 		width: 70vw;
@@ -513,7 +530,15 @@ button {
 	}
 	#form-input-container {
 		margin-top: 4.5em;
-		height: 150px;
+		height: 180px;
+	}
+	#form-input-div {
+		gap: 1.2em;
+	}
+	#form-button {
+		width: 80px;
+		height: 30px;
+		font-size: 0.9rem;
 	}
 	#player1-div {
 		grid-template-columns: 1fr 60px;
@@ -533,6 +558,9 @@ button {
 	.fa-x,
 	.fa-o {
 		font-size: 4vw;
+	}
+	#form-input-container {
+		margin-top: 1.5em;
 	}
 	#end-screen-content-wrapper {
 		gap: 2.5em;
