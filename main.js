@@ -50,12 +50,48 @@ let Gameboard = (function () {
 })();
 
 let Game = (function () {
-	let player1 = createPlayer("Duan", "X");
-	let player2 = createPlayer("Duan", "O");
+	let form = document.querySelector("form");
+	let formInput = document.getElementById("name");
+	let formInputContainer = document.getElementById("form-input-container");
+	let mainContent = document.querySelector("section");
+	let playerCounter = 0;
+	form.addEventListener("submit", setPlayerNames);
 
-	let playersTurn = player1;
-	let playerGoingFirst = player1;
+	let player1;
+	let player2;
+	let player1Name;
+	let player2Name;
+
+	let playersTurn;
+	let playerGoingFirst;
 	let turnsPlayed = 0;
+
+	function setPlayerNames(event) {
+		event.preventDefault();
+
+		if (playerCounter === 1) {
+			player2Name = formInput.value;
+			formInput.value = "";
+
+			form.classList.add("hidden");
+			mainContent.classList.remove("hidden");
+
+			player1 = createPlayer(player1Name, "X");
+			player2 = createPlayer(player2Name, "O");
+			playersTurn = player1;
+			playerGoingFirst = player1;
+			Display.displayNames(player1.name, player2.name);
+			return;
+		}
+		player1Name = formInput.value;
+		formInput.value = "";
+
+		formInput.classList.remove("input-blue");
+		formInput.classList.add("input-red");
+		formInputContainer.classList.remove("background-red");
+		formInputContainer.classList.add("background-blue");
+		playerCounter = 1;
+	}
 
 	function playRound(row, col, clickedTile) {
 		if (turnsPlayed === 9) {
@@ -111,7 +147,7 @@ let Game = (function () {
 		}
 
 		if (turnsPlayed === 9) {
-			resetGame();
+			resetRound();
 		}
 		return false;
 	}
@@ -119,10 +155,10 @@ let Game = (function () {
 	function playerWon() {
 		playersTurn.addPoint();
 		Display.renderScores(player1.getScore(), player2.getScore());
-		resetGame();
+		resetRound();
 	}
 
-	function resetGame() {
+	function resetRound() {
 		playerGoingFirst = playerGoingFirst === player1 ? player2 : player1;
 		player1.marker = player1.marker === "X" ? "O" : "X";
 		player2.marker = player2.marker === "O" ? "X" : "O";
@@ -148,15 +184,15 @@ let Display = (function () {
 
 	function addTileMarker(event) {
 		let tile = event.currentTarget;
-		Game.playRound(
-			tile.dataset.rowIndex,
-			tile.dataset.index,
-			tile
-		);
+		Game.playRound(tile.dataset.rowIndex, tile.dataset.index, tile);
 	}
 
 	function displayNames(player1Name, player2Name) {
+		let DOMplayer1Name = document.getElementById("player1-name");
+		let DOMplayer2Name = document.getElementById("player2-name");
 
+		DOMplayer1Name.textContent = player1Name;
+		DOMplayer2Name.textContent = player2Name;
 	}
 
 	function displayMarkers(player1Marker, player2Marker) {
@@ -175,15 +211,21 @@ let Display = (function () {
 	function renderBoard() {
 		let board = Gameboard.getBoard();
 
-		board.reduce(function(total, currentItem) {
+		board.reduce(function (total, currentItem) {
 			let row = document.querySelectorAll(`[data-row-index='${total}']`);
 
-			Array.from(row).reduce(function(subTotal, subCurrentItem) {
+			Array.from(row).reduce(function (subTotal, subCurrentItem) {
 				if (board[total][subTotal] !== "" && !subCurrentItem.hasChildNodes()) {
 					let icon = document.createElement("i");
-					icon.classList.add("fa-solid", `fa-${board[total][subTotal].toLowerCase()}`);
+					icon.classList.add(
+						"fa-solid",
+						`fa-${board[total][subTotal].toLowerCase()}`
+					);
 					subCurrentItem.appendChild(icon);
-				} else if (board[total][subTotal] === "" && subCurrentItem.hasChildNodes()) {
+				} else if (
+					board[total][subTotal] === "" &&
+					subCurrentItem.hasChildNodes()
+				) {
 					subCurrentItem.firstElementChild.remove();
 				}
 				return subTotal + 1;
@@ -197,10 +239,5 @@ let Display = (function () {
 		renderScores,
 		displayMarkers,
 		displayNames,
-	}
-})(Gameboard, Game);
-
-// let form = document.querySelector("form");
-// form.addEventListener("submit", function setPlayers() {
-
-// });
+	};
+})(Gameboard);

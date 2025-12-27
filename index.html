@@ -44,6 +44,7 @@
 							id="name"
 							maxlength="20"
 							autocomplete="off"
+							required
 						/>
 						<button id="form-button" type="submit">Submit</button>
 					</div>
@@ -54,7 +55,7 @@
 			<div class="flex" id="header">
 				<div class="grid header-child" id="player1-div">
 					<div class="header-child-text-div">
-						<p class="header-child-text">Olgeekaaagebt</p>
+						<p class="header-child-text" id="player1-name"></p>
 					</div>
 					<div class="header-child-icon-div">
 						<i class="fa-solid fa-x header-child-icon" id="player1-marker"></i>
@@ -66,7 +67,7 @@
 						<i class="fa-solid fa-o header-child-icon" id="player2-marker"></i>
 					</div>
 					<div class="header-child-text-div">
-						<p class="header-child-text">Olgeekaaagebt</p>
+						<p class="header-child-text" id="player2-name"></p>
 					</div>
 					<span class="header-child-score" id="player2-score">0</span>
 				</div>
@@ -87,8 +88,20 @@
 			<div class="flex" id="end-screen-content-wrapper">
 				<h3>Duan Won!</h3>
 				<div class="flex" id="end-screen-buttons-div">
-					<button class="end-screen-button" id="next-round-button" type="button">Next Round</button>
-					<button class="end-screen-button" id="restart-game-button" type="button">Restart Game</button>
+					<button
+						class="end-screen-button"
+						id="next-round-button"
+						type="button"
+					>
+						Next Round
+					</button>
+					<button
+						class="end-screen-button"
+						id="restart-game-button"
+						type="button"
+					>
+						Restart Game
+					</button>
 				</div>
 			</div>
 		</div>
