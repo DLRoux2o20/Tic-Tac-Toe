@@ -109,7 +109,6 @@ let Game = (function () {
 
 		if (turnsPlayed >= 5) {
 			if (isWinner(boardSnapshot, row, col, playersTurn.marker)) {
-				playersTurn = playerGoingFirst;
 				return;
 			}
 		}
@@ -119,13 +118,13 @@ let Game = (function () {
 
 	function isWinner(board, row, col, marker) {
 		if (board[row][0] === board[row][1] && board[row][0] === board[row][2]) {
-			playerWon();
+			Display.showEndScreen(playersTurn.name);
 			return true;
 		} else if (
 			board[0][col] === board[1][col] &&
 			board[0][col] === board[2][col]
 		) {
-			playerWon();
+			Display.showEndScreen(playersTurn.name);
 			return true;
 		}
 
@@ -134,7 +133,7 @@ let Game = (function () {
 			board[1][1] === marker &&
 			board[2][2] === marker
 		) {
-			playerWon();
+			Display.showEndScreen(playersTurn.name);
 			return true;
 		}
 		if (
@@ -142,7 +141,7 @@ let Game = (function () {
 			board[1][1] === marker &&
 			board[2][0] === marker
 		) {
-			playerWon();
+			Display.showEndScreen(playersTurn.name);
 			return true;
 		}
 
@@ -160,6 +159,7 @@ let Game = (function () {
 
 	function resetRound() {
 		playerGoingFirst = playerGoingFirst === player1 ? player2 : player1;
+		playersTurn = playerGoingFirst;
 		player1.marker = player1.marker === "X" ? "O" : "X";
 		player2.marker = player2.marker === "O" ? "X" : "O";
 		turnsPlayed = 0;
@@ -169,12 +169,23 @@ let Game = (function () {
 
 	return {
 		playRound,
+		playerWon,
 	};
 })(Gameboard);
 
 let Display = (function () {
 	const tiles = document.getElementsByClassName("tile");
 	Array.from(tiles).forEach((e) => e.addEventListener("click", addTileMarker));
+
+	let nextRoundButton = document.getElementById("next-round-button");
+	let restartGameButton = document.getElementById("restart-game-button");
+
+	nextRoundButton.addEventListener("click", hideEndScreen);
+	nextRoundButton.addEventListener("click", Game.playerWon);
+	restartGameButton.addEventListener("click", () => location.reload());
+
+	let endScreen = document.getElementById("end-screen");
+	let winnerText = document.getElementById("winner-text");
 
 	let DOMplayer1Icon = document.getElementById("player1-marker");
 	let DOMplayer2Icon = document.getElementById("player2-marker");
@@ -234,10 +245,20 @@ let Display = (function () {
 		}, 0);
 	}
 
+	function showEndScreen(winnerName) {
+		endScreen.classList.remove("hidden");
+		winnerText.textContent = `${winnerName} Won!`;
+	}
+
+	function hideEndScreen() {
+		endScreen.classList.add("hidden");
+	}
+
 	return {
 		renderBoard,
 		renderScores,
 		displayMarkers,
 		displayNames,
+		showEndScreen,
 	};
 })(Gameboard);
