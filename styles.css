@@ -650,3 +650,26 @@ label {
 		top: 70vh;
 	}
 }
+
+@media only screen and (max-height: 350px) {
+	/* :root {
+		--biggest-shape: 5rem;
+		--xl-shape: 4.5rem;
+		--l-shape: 4rem;
+		--m-shape: 3.5rem;
+		--s-shape: 3rem;
+		--xs-shape: 2.5rem;
+		--xxs-shape: 1.6rem;
+		--smallest-shape: 1.5rem;
+	} */
+	 :root {
+		--biggest-shape: 4rem;
+		--xl-shape: 3.5rem;
+		--l-shape: 3.2rem;
+		--m-shape: 2.8rem;
+		--s-shape: 2.2rem;
+		--xs-shape: 1.8rem;
+		--xxs-shape: 1.5rem;
+		--smallest-shape: 1.2rem;
+	}
+}
