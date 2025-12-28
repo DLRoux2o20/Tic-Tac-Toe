@@ -94,9 +94,6 @@ let Game = (function () {
 	}
 
 	function playRound(row, col, clickedTile) {
-		if (turnsPlayed === 9) {
-			return;
-		}
 		if (clickedTile.hasChildNodes()) {
 			return;
 		}
@@ -146,7 +143,7 @@ let Game = (function () {
 		}
 
 		if (turnsPlayed === 9) {
-			resetRound();
+			Display.showEndScreen("draw");
 		}
 		return false;
 	}
@@ -167,9 +164,15 @@ let Game = (function () {
 		Gameboard.resetBoard();
 	}
 
+	function resetDraw() {
+		Display.changeButtonListener();
+		resetRound();
+	}
+
 	return {
 		playRound,
 		playerWon,
+		resetDraw,
 	};
 })(Gameboard);
 
@@ -247,11 +250,23 @@ let Display = (function () {
 
 	function showEndScreen(winnerName) {
 		endScreen.classList.remove("hidden");
+
+		if (winnerName === "draw") {
+			winnerText.textContent = "It's a draw!";
+			nextRoundButton.removeEventListener("click", Game.playerWon);
+			nextRoundButton.addEventListener("click", Game.resetDraw);
+			return;
+		}
 		winnerText.textContent = `${winnerName} Won!`;
 	}
 
 	function hideEndScreen() {
 		endScreen.classList.add("hidden");
+	}
+
+	function changeButtonListener() {
+		nextRoundButton.removeEventListener("click", Game.resetDraw);
+		nextRoundButton.addEventListener("click", Game.playerWon);
 	}
 
 	return {
@@ -260,5 +275,6 @@ let Display = (function () {
 		displayMarkers,
 		displayNames,
 		showEndScreen,
+		changeButtonListener,
 	};
 })(Gameboard);

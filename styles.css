@@ -490,8 +490,8 @@ label {
 		--m-shape: 2.5rem;
 		--s-shape: 2rem;
 		--xs-shape: 1.5rem;
-		--xxs-shape: 1rem;
-		--smallest-shape: 0.8rem;
+		--xxs-shape: 1.2rem;
+		--smallest-shape: 1rem;
 	}
 	h2 {
 		font-size: 1.6rem;
@@ -546,6 +546,54 @@ label {
 	#player2-div {
 		grid-template-columns: 60px 1fr;
 	}
+	#form-x1 {
+		top: 9vh;
+		left: 6vw;
+	}
+	#form-o1 {
+		top: 22vh;
+		left: 11vw;
+	}
+	#form-x2 {
+		top: 28vh;
+		left: 4vw;
+	}
+	#form-o2 {
+		top: 34vh;
+		left: 7vw;
+	}
+	#form-o3 {
+		top: 45vh;
+		left: 5vw;
+	}
+	#form-x3 {
+		top: 55vh;
+		left: 10vw;
+	}
+	#form-o4 {
+		top: 9vh;
+		right: 6vw;
+	}
+	#form-x4 {
+		top: 21vh;
+		right: 3vw;
+	}
+	#form-o5 {
+		top: 30vh;
+		right: 9vw;
+	}
+	#form-x5 {
+		top: 38vh;
+		right: 14vw;
+	}
+	#form-x6 {
+		top: 46vh;
+		right: 5vw;
+	}
+	#form-o6 {
+		top: 55vh;
+		right: 10vw;
+	}
 }
 
 @media only screen and (max-height: 430px) {
@@ -564,5 +612,41 @@ label {
 	}
 	#end-screen-content-wrapper {
 		gap: 2.5em;
+	}
+	#form-x1 {
+		top: 8vh;
+	}
+	#form-o1 {
+		top: 30vh;
+	}
+	#form-x2 {
+		top: 36vh;
+	}
+	#form-o2 {
+		top: 42vh;
+	}
+	#form-o3 {
+		top: 54vh;
+	}
+	#form-x3 {
+		top: 70vh;
+	}
+	#form-o4 {
+		top: 8vh;
+	}
+	#form-x4 {
+		top: 28vh;
+	}
+	#form-o5 {
+		top: 42vh;
+	}
+	#form-x5 {
+		top: 52vh;
+	}
+	#form-x6 {
+		top: 56vh;
+	}
+	#form-o6 {
+		top: 70vh;
 	}
 }
