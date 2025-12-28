@@ -52,6 +52,7 @@ let Gameboard = (function () {
 let Game = (function () {
 	let form = document.querySelector("form");
 	let formInput = document.getElementById("name");
+	let formInputLabel = document.querySelector("label");
 	let formInputContainer = document.getElementById("form-input-container");
 	let mainContent = document.querySelector("section");
 	let playerCounter = 0;
@@ -90,6 +91,7 @@ let Game = (function () {
 		formInput.classList.add("input-red");
 		formInputContainer.classList.remove("background-red");
 		formInputContainer.classList.add("background-blue");
+		formInputLabel.textContent = "Enter player 2 name";
 		playerCounter = 1;
 	}
 
